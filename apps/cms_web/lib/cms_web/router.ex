@@ -9,18 +9,10 @@ defmodule CMSWeb.Router do
     plug :put_secure_browser_headers
   end
 
-  pipeline :api do
-    plug :accepts, ["json"]
-  end
-
   scope "/", CMSWeb do
     pipe_through :browser
 
     get "/", PageController, :index
+    resources "/posts", PostController
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", CMSWeb do
-  #   pipe_through :api
-  # end
 end
