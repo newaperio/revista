@@ -3,9 +3,9 @@ defmodule CMS.Posts.Post do
 
   import Ecto.Changeset
 
-  schema "posts" do
-    field :body, :string
-    field :title, :string
+  schema "cms_posts" do
+    field(:body, :string)
+    field(:title, :string)
 
     timestamps()
   end
