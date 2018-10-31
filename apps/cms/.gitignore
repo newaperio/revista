@@ -19,8 +19,6 @@ erl_crash.dump
 # Also ignore archive artifacts (built via "mix archive.build").
 *.ez
 
-# Ignore OS artifacts.
-.DS_Store
+# Ignore package tarball (built via "mix hex.build").
+cms-*.tar
 
-# Ignore Elixir LS cache.
-.elixir_ls
