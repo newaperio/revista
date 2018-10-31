@@ -1,3 +1,4 @@
+# B
 # The directory Mix will write compiled artifacts to.
 /_build/
 
@@ -22,5 +23,5 @@ erl_crash.dump
 # Ignore OS artifacts.
 .DS_Store
 
-# Ignore Elixir LS cache.
-.elixir_ls
+# Ignore Elixir LS directory.
+.elixir_ls/
