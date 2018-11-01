@@ -37,7 +37,7 @@ defmodule Web.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.4.0-rc"},
+      {:phoenix, "~> 1.4.0-rc", override: true},
       {:phoenix_pubsub, "~> 1.1"},
       {:phoenix_html, "~> 2.11"},
       {:phoenix_live_reload, "~> 1.2-rc", only: :dev},
