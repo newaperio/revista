@@ -1,14 +1,14 @@
-defmodule Auth.Repo.Migrations.CreateAccounts do
+defmodule Auth.Repo.Migrations.CreateUsers do
   use Ecto.Migration
 
   def change do
-    create table(:auth_accounts) do
+    create table(:auth_users) do
       add(:email, :string)
       add(:password_hash, :string)
 
       timestamps()
     end
 
-    create(unique_index(:auth_accounts, [:email]))
+    create(unique_index(:auth_users, [:email]))
   end
 end

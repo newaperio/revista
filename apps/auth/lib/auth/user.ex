@@ -1,9 +1,9 @@
-defmodule Auth.Account do
+defmodule Auth.User do
   use Ecto.Schema
 
   import Ecto.Changeset
 
-  schema "auth_accounts" do
+  schema "auth_users" do
     field(:email, :string)
     field(:password_hash, :string)
     field(:password, :string, virtual: true)
@@ -12,8 +12,8 @@ defmodule Auth.Account do
   end
 
   @doc false
-  def changeset(account, params \\ %{}) do
-    cast(account, params, ~w(email password)a)
+  def changeset(user, params \\ %{}) do
+    cast(user, params, ~w(email password)a)
     |> validate_required(~w(email password)a)
     |> validate_format(:email, ~r/.*@.*\..*/)
     |> validate_length(:password, min: 6)

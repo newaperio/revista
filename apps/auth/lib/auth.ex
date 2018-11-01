@@ -4,11 +4,13 @@ defmodule Auth do
   """
 
   alias Auth.Repo
-  alias Auth.Account
+  alias Auth.User
+
+  def get_user!(id), do: Repo.get!(User, id)
 
   def register(attrs \\ %{}) do
-    %Account{}
-    |> Account.changeset(attrs)
+    %User{}
+    |> User.changeset(attrs)
     |> Repo.insert()
   end
 
