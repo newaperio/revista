@@ -27,7 +27,12 @@ defmodule Twitter.HTTPClient do
   """
   @impl true
   def get_recent_tweets(count \\ 5) do
-    url = url("/statuses/user_timeline.json", screen_name: @config[:screen_name], count: count)
+    url =
+      url("/statuses/user_timeline.json",
+        screen_name: @config[:screen_name],
+        count: count
+      )
+
     headers = [{"Authorization", "Bearer #{@config[:bearer_token]}"}]
 
     case HTTPoison.get(url, headers) do

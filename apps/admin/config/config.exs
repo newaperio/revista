@@ -8,8 +8,7 @@ config :admin,
 # Configures the endpoint
 config :admin, Admin.Endpoint,
   url: [host: "localhost"],
-  secret_key_base:
-    "PjgTIyB/MD+MOki658QKj7/N2KlaUIg0dme/HNzFenZJd+VKf+oO2jnWW9bGo4r4",
+  secret_key_base: "PjgTIyB/MD+MOki658QKj7/N2KlaUIg0dme/HNzFenZJd+VKf+oO2jnWW9bGo4r4",
   render_errors: [view: Admin.ErrorView, accepts: ~w(html json)],
   pubsub: [name: Admin.PubSub, adapter: Phoenix.PubSub.PG2]
 
