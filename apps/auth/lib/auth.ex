@@ -14,21 +14,19 @@ defmodule Auth do
     |> Repo.insert()
   end
 
-  def login(email, password) do
-    account = Repo.get_by(Account, email: email)
-    do_login(account, password)
-  end
+  def authenticate(email, password) do
+    user = Repo.get_by(User, email: email)
 
-  defp do_login(%Account{password_hash: password_hash} = account, password) do
-    if Comeonin.Argon2.checkpw(password, password_hash) do
-      {:ok, account}
-    else
-      {:error, :unauthorized}
+    cond do
+      user && Comeonin.Argon2.checkpw(password, user.password_hash) ->
+        {:ok, user}
+
+      user ->
+        {:error, :unauthorized}
+
+      true ->
+        Comeonin.Argon2.dummy_checkpw()
+        {:error, :not_found}
     end
-  end
-
-  defp do_login(nil, _) do
-    Comeonin.Argon2.dummy_checkpw()
-    {:error, :not_found}
   end
 end
