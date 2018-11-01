@@ -15,6 +15,13 @@ config :twitter, Twitter.Endpoint,
   render_errors: [view: Twitter.ErrorView, accepts: ~w(json)],
   pubsub: [name: Twitter.PubSub, adapter: Phoenix.PubSub.PG2]
 
+config :twitter,
+  client: Twitter.HTTPClient
+
+config :twitter, Twitter.HTTPClient,
+  bearer_token: System.get_env("BEARER_TOKEN"),
+  screen_name: System.get_env("SCREEN_NAME")
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"

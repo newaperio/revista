@@ -9,3 +9,6 @@ use Mix.Config
 config :twitter, Twitter.Endpoint,
   http: [port: 4002],
   server: false
+
+config :twitter,
+  client: Twitter.InMemoryClient
