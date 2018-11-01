@@ -1,6 +1,10 @@
 defmodule Admin.PostController do
   use Admin, :controller
 
+  import Admin.AuthController, only: [authenticate: 2]
+
+  plug :authenticate
+
   alias CMS.Posts
   alias CMS.Posts.Post
 

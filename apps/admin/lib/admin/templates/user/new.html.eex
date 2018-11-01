@@ -1,0 +1,13 @@
+<%= form_for @changeset, Routes.user_path(@conn, :create), fn f -> %>
+  <%= if @changeset.action do %>
+    Oops, something went wrong! Please check the errors below.
+  <% end %>
+
+  <%= text_input f, :email, placeholder: "Your email" %>
+  <%= error_tag f, :email %>
+
+  <%= password_input f, :password, placeholder: "Your password" %>
+  <%= error_tag f, :password %>
+
+  <%= submit "Create User" %>
+<% end %>

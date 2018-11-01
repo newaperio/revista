@@ -11,13 +11,15 @@
     <header>
       <section class="container">
         <nav role="navigation">
-          <ul>
-            <li><a href="https://hexdocs.pm/phoenix/overview.html">Get Started</a></li>
-          </ul>
+          <%= if @current_user do %>
+            <%= @current_user.email %>
+            <%= link "Log out", to: Routes.session_path(@conn, :delete, @current_user), method: "delete" %>
+          <% else %>
+            <%= link "Register", to: Routes.user_path(@conn, :new) %></li> <li><%= link "Log in", to: Routes.session_path(@conn, :new) %>
+          <% end %>
         </nav>
-        <a href="http://phoenixframework.org/" class="phx-logo">
-          <img src="<%= Routes.static_path(@conn, "/images/phoenix.png") %>" alt="Phoenix Framework Logo"/>
-        </a>
+
+        <strong style="text-transform: uppercase;">Revista Admin</strong>
       </section>
     </header>
     <main role="main" class="container">

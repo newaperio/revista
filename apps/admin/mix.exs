@@ -13,7 +13,6 @@ defmodule Admin.MixProject do
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
-      aliases: aliases(),
       deps: deps()
     ]
   end
@@ -47,14 +46,8 @@ defmodule Admin.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
-      {:cms, in_umbrella: true}
+      {:cms, in_umbrella: true},
+      {:auth, in_umbrella: true}
     ]
-  end
-
-  # Aliases are shortcuts or tasks specific to the current project.
-  #
-  # See the documentation for `Mix` for more info on aliases.
-  defp aliases do
-    []
   end
 end

@@ -1,11 +1,7 @@
 defmodule AuthTest do
-  use ExUnit.Case
+  use Auth.Case
 
   @valid_attrs %{email: "alice@example.com", password: "password"}
-
-  setup do
-    Ecto.Adapters.SQL.Sandbox.checkout(Auth.Repo)
-  end
 
   def user_fixture(attrs \\ %{}) do
     {:ok, user} =
