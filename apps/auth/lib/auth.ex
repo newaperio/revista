@@ -8,6 +8,10 @@ defmodule Auth do
 
   def get_user!(id), do: Repo.get!(User, id)
 
+  def change_user(%User{} = user \\ %User{}) do
+    User.changeset(user, %{})
+  end
+
   def register(attrs \\ %{}) do
     %User{}
     |> User.changeset(attrs)
