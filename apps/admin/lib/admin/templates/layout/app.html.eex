@@ -10,6 +10,8 @@
   <body>
     <header>
       <section class="container">
+        <h1>Revista Admin</h1>
+
         <nav role="navigation">
           <%= if @current_user do %>
             <%= @current_user.email %>
@@ -18,8 +20,6 @@
             <%= link "Register", to: Routes.user_path(@conn, :new) %></li> <li><%= link "Log in", to: Routes.session_path(@conn, :new) %>
           <% end %>
         </nav>
-
-        <strong style="text-transform: uppercase;">Revista Admin</strong>
       </section>
     </header>
     <main role="main" class="container">
