@@ -11,7 +11,8 @@ config :twitter,
 # Configures the endpoint
 config :twitter, Twitter.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "LPVoRt3YEO9+37Xaa6nQxp6Lxnipl1xieg8RiQrv1loYF0GERVlktSlHo5WArzdD",
+  secret_key_base:
+    "LPVoRt3YEO9+37Xaa6nQxp6Lxnipl1xieg8RiQrv1loYF0GERVlktSlHo5WArzdD",
   render_errors: [view: Twitter.ErrorView, accepts: ~w(json)],
   pubsub: [name: Twitter.PubSub, adapter: Phoenix.PubSub.PG2]
 
