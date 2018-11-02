@@ -1,28 +1,31 @@
-<h1>Listing Posts</h1>
+<div class="card">
+  <div class="card-header font-weight-bold">
+    Posts
+  </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Body</th>
+  <div class="card-body">
+    <table class="table table-borderless table-striped">
+      <tbody>
+        <%= for post <- @posts do %>
+            <tr>
+              <td><%= post.title %></td>
 
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-<%= for post <- @posts do %>
-    <tr>
-      <td><%= post.title %></td>
-      <td><%= post.body %></td>
+              <td>
+                <%= link "Show", to: Routes.post_path(@conn, :show, post) %>
+              </td>
+              <td>
+                <%= link "Edit", to: Routes.post_path(@conn, :edit, post) %>
+              </td>
+              <td>
+                <%= link "Delete", to: Routes.post_path(@conn, :delete, post), method: :delete, data: [confirm: "Are you sure?"] %>
+              </td>
+            </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 
-      <td>
-        <%= link "Show", to: Routes.post_path(@conn, :show, post) %>
-        <%= link "Edit", to: Routes.post_path(@conn, :edit, post) %>
-        <%= link "Delete", to: Routes.post_path(@conn, :delete, post), method: :delete, data: [confirm: "Are you sure?"] %>
-      </td>
-    </tr>
-<% end %>
-  </tbody>
-</table>
-
-<span><%= link "New Post", to: Routes.post_path(@conn, :new) %></span>
+  <div class="card-footer">
+    <%= link "New Post", to: Routes.post_path(@conn, :new), class: "btn btn-primary" %>
+  </div>
+</div>
