@@ -1,6 +1,9 @@
 import { Socket } from "phoenix";
+import React from "react";
+import ReactDOM from "react-dom";
+import TweetList from "./components/TweetList";
 import "phoenix_html";
-import "../css/app.css";
+import "../css/app.scss";
 
 const SOCKET_URL = "ws://localhost:4002/socket";
 
@@ -16,6 +19,7 @@ channel
   .receive("ok", resp => console.log("Joined Tweets channel", resp))
   .receive("error", resp => console.log("Unable to join Tweets channel", resp));
 
-channel.on("tweets_refreshed", payload => {
-  console.log(payload);
+document.addEventListener("DOMContentLoaded", () => {
+  const node = document.getElementById("tweets");
+  ReactDOM.render(<TweetList channel={channel} />, node);
 });

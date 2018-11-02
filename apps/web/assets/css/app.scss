@@ -1,0 +1,48 @@
+@import "custom";
+@import "~bootstrap/scss/bootstrap";
+@import url("https://fonts.googleapis.com/css?family=Alegreya:400,400i,700|Montserrat:400,700|Playfair+Display+SC:900|Playfair+Display:900i");
+
+body {
+  border-top: 10px solid #6ccec7;
+  font-family: "Alegreya", serif;
+  font-size: 1.25rem;
+  padding-top: 4rem;
+}
+
+.text-lg {
+  font-size: 1.5rem;
+}
+
+.banner {
+  border-bottom: 5px solid #0d5459;
+
+  &__main {
+    display: block;
+    font-family: "Playfair Display", serif;
+  }
+
+  &__sub {
+    display: block;
+    font-family: "Montserrat", sans-serif;
+  }
+}
+
+#tweets {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1rem;
+}
+
+.excerpt {
+  max-height: 400px;
+  overflow: hidden;
+  position: relative;
+
+  &__fade {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(transparent, #fff);
+  }
+}

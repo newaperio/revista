@@ -4,20 +4,23 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Web · Phoenix Framework</title>
+    <title>Revista de New Aperio</title>
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
   </head>
   <body>
-    <header>
+    <header class="mb-5">
       <section class="container">
-        <h1>Revista</h1>
+        <h1 class="banner pb-2">
+          <span class="banner__main display-3 mb-0">Revista</span>
+          <span class="banner__sub text-uppercase h5 text-muted">de New Aperio</span>
+        </h1>
       </section>
     </header>
-    <main role="main" class="container">
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+
+    <div class="container">
       <%= render @view_module, @view_template, assigns %>
-    </main>
+    </div>
+
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>
