@@ -10,6 +10,9 @@ use Mix.Config
 # which you should run after static files are built and
 # before starting your production server.
 config :admin, Admin.Endpoint,
-  http: [:inet6, port: System.get_env("PORT") || 4101],
-  url: [host: "example.com", port: 80],
-  cache_static_manifest: "priv/static/cache_manifest.json"
+  http: [:inet6, port: {:system, "ADMIN_PORT"}],
+  url: [host: "localhost", port: {:system, "ADMIN_PORT"}],
+  cache_static_manifest: "priv/static/cache_manifest.json",
+  server: true,
+  root: ".",
+  version: Application.spec(:admin, :vsn)

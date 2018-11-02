@@ -1,7 +1,3 @@
-# Since configuration is shared in umbrella projects, this file
-# should only configure the :twitter application itself
-# and only for organization purposes. All other config goes to
-# the umbrella root.
 use Mix.Config
 
 # For production, don't forget to configure the url host
@@ -14,6 +10,12 @@ use Mix.Config
 # which you should run after static files are built and
 # before starting your production server.
 config :twitter, Twitter.Endpoint,
-  http: [:inet6, port: System.get_env("PORT") || 4102],
-  url: [host: "example.com", port: 80],
-  cache_static_manifest: "priv/static/cache_manifest.json"
+  http: [:inet6, port: {:system, "TWITTER_PORT"}],
+  url: [host: "localhost", port: {:system, "TWITTER_PORT"}],
+  server: true,
+  root: ".",
+  version: Application.spec(:twitter, :vsn)
+
+config :twitter, Twitter.HTTPClient,
+  bearer_token: {:system, "BEARER_TOKEN"},
+  screen_name: {:system, "SCREEN_NAME"}

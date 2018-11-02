@@ -11,5 +11,8 @@ defmodule Revista.MixProject do
     ]
   end
 
-  defp deps, do: []
+  defp deps,
+    do: [
+      {:distillery, "~> 2.0", runtime: false}
+    ]
 end
