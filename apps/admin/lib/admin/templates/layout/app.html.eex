@@ -1,32 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Admin · Phoenix Framework</title>
-    <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
-  </head>
-  <body>
-    <header>
-      <section class="container">
-        <h1>Revista Admin</h1>
 
-        <nav role="navigation">
-          <%= if @current_user do %>
-            <%= @current_user.email %>
-            <%= link "Log out", to: Routes.session_path(@conn, :delete, @current_user), method: "delete" %>
-          <% else %>
-            <%= link "Register", to: Routes.user_path(@conn, :new) %></li> <li><%= link "Log in", to: Routes.session_path(@conn, :new) %>
-          <% end %>
-        </nav>
-      </section>
-    </header>
-    <main role="main" class="container">
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
-      <%= render @view_module, @view_template, assigns %>
-    </main>
-    <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
-  </body>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin · Phoenix Framework</title>
+  <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-5">
+    <%= link "Revista CMS", to: Routes.post_path(@conn, :index), class: "navbar-brand navbar-brand mb-0 h1" %>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <nav class="navbar-nav mr-auto"></nav>
+      <div class="form-inline my-2 my-lg-0">
+        <%= if @current_user do %>
+          <span class="text-light mr-4"><%= @current_user.email %></span>
+          <%= link "Log out", to: Routes.session_path(@conn, :delete, @current_user), method: "delete", class: "btn btn-outline-primary" %>
+        <% else %>
+          <%= link "Register", to: Routes.user_path(@conn, :new), class: "btn btn-secondary mr-3" %>
+          <%= link "Log in", to: Routes.session_path(@conn, :new), class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </nav>
+
+  <main role="main" class="container w-measure">
+    <%= if get_flash(@conn, :info) do %>
+      <p class="alert alert-info" role="alert">
+        <%= get_flash(@conn, :info) %>
+      </p>
+    <% end %>
+
+    <%= if get_flash(@conn, :error) do %>
+      <p class="alert alert-danger" role="alert">
+        <%= get_flash(@conn, :error) %>
+      </p>
+    <% end %>
+
+    <%= render @view_module, @view_template, assigns %>
+  </main>
+  <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
+</body>
+
 </html>

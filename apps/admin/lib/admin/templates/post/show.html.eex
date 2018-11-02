@@ -1,18 +1,11 @@
-<h1>Show Post</h1>
-
-<ul>
-
-  <li>
-    <strong>Title:</strong>
-    <%= @post.title %>
-  </li>
-
-  <li>
-    <strong>Body:</strong>
-    <%= @post.body %>
-  </li>
-
-</ul>
-
-<span><%= link "Edit", to: Routes.post_path(@conn, :edit, @post) %></span>
-<span><%= link "Back", to: Routes.post_path(@conn, :index) %></span>
+<div class="w-measure">
+  <div class="card">
+    <article class="card-body">
+        <header class="d-flex justify-content-between align-items-center">
+          <h1><%= @post.title %></h1>
+          <%= link "Edit", to: Routes.post_path(@conn, :edit, @post), class: "btn btn-outline-secondary" %>
+        </header>
+        <%= Phoenix.HTML.raw(@post.body) %>
+    </article>
+  </div>
+</div>

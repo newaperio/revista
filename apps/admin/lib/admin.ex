@@ -43,6 +43,7 @@ defmodule Admin do
       use Phoenix.HTML
 
       import Admin.ErrorHelpers
+      import Admin.InputHelpers
       import Admin.Gettext
       alias Admin.Router.Helpers, as: Routes
     end

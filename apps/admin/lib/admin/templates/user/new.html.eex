@@ -1,13 +1,15 @@
-<%= form_for @changeset, Routes.user_path(@conn, :create), fn f -> %>
-  <%= if @changeset.action do %>
-    Oops, something went wrong! Please check the errors below.
-  <% end %>
+<div class="w-narrow">
+  <div class="card text-white bg-dark">
+    <div class="card-header font-weight-bold">
+      Register
+    </div>
 
-  <%= text_input f, :email, placeholder: "Your email" %>
-  <%= error_tag f, :email %>
-
-  <%= password_input f, :password, placeholder: "Your password" %>
-  <%= error_tag f, :password %>
-
-  <%= submit "Create User" %>
-<% end %>
+    <div class="card-body">
+      <%= form_for @changeset, Routes.user_path(@conn, :create), fn f -> %>
+        <%= input f, :email, placeholder: "Your email" %>
+        <%= input f, :password, placeholder: "Choose a password" %>
+        <%= submit "Register", class: "btn btn-primary float-right" %>
+      <% end %>
+    </div>
+  </div>
+</div>

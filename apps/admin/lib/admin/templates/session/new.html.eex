@@ -1,13 +1,15 @@
-<h1>Login</h1>
+<div class="w-narrow">
+  <div class="card text-white bg-dark">
+    <div class="card-header font-weight-bold">
+      Log in
+    </div>
 
-<%= form_for @conn, Routes.session_path(@conn, :create), [as: :session], fn f -> %>
-  <div>
-    <%= text_input f, :email, placeholder: "Email" %>
+    <div class="card-body">
+      <%= form_for @conn, Routes.session_path(@conn, :create), [as: :session], fn f -> %>
+        <%= input f, :email, placeholder: "Email" %>
+        <%= input f, :password, placeholder: "Password" %>
+        <%= submit "Log in", class: "btn btn-primary" %>
+      <% end %>
+    </div>
   </div>
-
-  <div>
-    <%= password_input f, :password, placeholder: "Password" %>
-  </div>
-
-  <%= submit "Log in" %>
-<% end %>
+</div>

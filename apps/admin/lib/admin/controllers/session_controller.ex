@@ -11,8 +11,7 @@ defmodule Admin.SessionController do
     case AuthWeb.login(conn, email, password) do
       {:ok, conn} ->
         conn
-        |> put_flash(:info, "Welcome back!")
-        |> redirect(to: Routes.page_path(conn, :index))
+        |> redirect(to: Routes.post_path(conn, :index))
 
       {:error, _reason, conn} ->
         conn
@@ -24,6 +23,6 @@ defmodule Admin.SessionController do
   def delete(conn, _) do
     conn
     |> AuthWeb.logout()
-    |> redirect(to: Routes.page_path(conn, :index))
+    |> redirect(to: Routes.session_path(conn, :new))
   end
 end

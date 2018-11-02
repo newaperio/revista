@@ -1,2 +1,3 @@
 import "phoenix_html";
-import "../css/app.css";
+import "trix";
+import "../css/app.scss";
