@@ -3,6 +3,8 @@ defmodule Twitter.Tweet do
   Defines a Tweet retrieved from Twitter.
   """
 
+  @derive Jason.Encoder
+
   alias __MODULE__
 
   @type t :: %Tweet{}

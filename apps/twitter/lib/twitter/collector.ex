@@ -7,9 +7,11 @@ defmodule Twitter.Collector do
 
   use GenServer
 
+  alias Twitter.Endpoint
+
   @name Collector
   @client Application.get_env(:twitter, :client)
-  @refresh_time 10_000
+  @refresh_time 1_000
 
   ## Client API
 
@@ -44,6 +46,7 @@ defmodule Twitter.Collector do
   def handle_info(:refresh, state) do
     case @client.get_recent_tweets() do
       {:ok, tweets} ->
+        broadcast_tweets(tweets)
         schedule_refresh(@refresh_time)
         {:noreply, tweets}
 
@@ -54,6 +57,10 @@ defmodule Twitter.Collector do
   end
 
   ## Helper Functions
+
+  defp broadcast_tweets(tweets) do
+    Endpoint.broadcast!("tweets", "tweets_refreshed", %{tweets: tweets})
+  end
 
   defp schedule_refresh(time \\ 0) do
     Process.send_after(self(), :refresh, time)
