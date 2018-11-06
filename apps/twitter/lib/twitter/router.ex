@@ -2,14 +2,16 @@ defmodule Twitter.Router do
   use Twitter, :router
 
   pipeline :api do
-    plug Plug.Parsers,
+    plug(Plug.Parsers,
       parsers: [:urlencoded, :multipart, :json, Absinthe.Plug.Parser],
       pass: ["*/*"],
       json_decoder: Poison
+    )
   end
 
   scope "/" do
-    forward "/graphiql", Absinthe.Plug.GraphiQL, schema: Twitter.Schema
-    forward "/", Absinthe.Plug, schema: Twitter.Schema
+    forward("/healthcheck", Twitter.PlugRouter)
+    forward("/graphiql", Absinthe.Plug.GraphiQL, schema: Twitter.Schema)
+    forward("/", Absinthe.Plug, schema: Twitter.Schema)
   end
 end
