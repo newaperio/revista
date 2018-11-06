@@ -1,34 +1,48 @@
 use Mix.Config
 
+defmodule Revista.ConfigHelpers do
+  @moduledoc false
+
+  def integer_var(varname, default \\ 1) do
+    case System.get_env(varname) do
+      nil -> default
+      val -> val
+    end
+  end
+end
+
+alias Revista.ConfigHelpers
+
+# Set Configuration
+
 admin = %{
-  port: String.to_integer(System.get_env("ADMIN_PORT")),
+  port: ConfigHelpers.integer_var("ADMIN_PORT", 4001),
   secret_key_base: System.get_env("ADMIN_SECRET_KEY_BASE")
 }
 
 auth = %{
-  pool_size: String.to_integer(System.get_env("AUTH_POOL_SIZE")),
+  pool_size: ConfigHelpers.integer_var("AUTH_POOL_SIZE", 10),
   database_url: System.get_env("AUTH_DATABASE_URL")
 }
 
-
 cms = %{
-  pool_size: String.to_integer(System.get_env("CMS_POOL_SIZE")),
+  pool_size: ConfigHelpers.integer_var("CMS_POOL_SIZE", 10),
   database_url: System.get_env("CMS_DATABASE_URL")
 }
 
 twitter = %{
   bearer_token: System.get_env("TWITTER_BEARER_TOKEN"),
-  port: String.to_integer(System.get_env("TWITTER_PORT"))
-  screen_name: System.get_env("TWITTER_SCREEN_NAME")
+  port: ConfigHelpers.integer_var("TWITTER_PORT", 4002),
+  screen_name: System.get_env("TWITTER_SCREEN_NAME"),
   secret_key_base: System.get_env("TWITTER_SECRET_KEY_BASE")
 }
 
 web = %{
-  port: String.to_integer(System.get_env("WEB_PORT")),
+  port: ConfigHelpers.integer_var("WEB_PORT", 4003),
   secret_key_base: System.get_env("WEB_SECRET_KEY_BASE")
 }
 
-# Configuration
+# Apply Configuration
 
 config :admin, Admin.Endpoint,
   http: [:inet6, port: admin[:port]],
@@ -43,7 +57,6 @@ config :cms, CMS.Repo,
   url: cms[:database_url],
   pool_size: cms[:pool_size]
 
-twitter_port = String.to_integer(System.get_env("TWITTER_PORT"))
 config :admin, Twitter.Endpoint,
   http: [:inet6, port: twitter[:port]],
   url: [host: "localhost", port: twitter[:port]],
@@ -53,7 +66,6 @@ config :twitter, Twitter.HTTPClient,
   bearer_token: twitter[:bearer_token],
   screen_name: twitter[:screen_name]
 
-web_port = String.to_integer(System.get_env("WEB_PORT"))
 config :admin, Web.Endpoint,
   http: [:inet6, port: web[:port]],
   url: [host: "localhost", port: web[:port]],
