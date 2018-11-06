@@ -8,14 +8,13 @@
 |> Enum.map(&Code.eval_file(&1))
 
 use Mix.Releases.Config,
-    # This sets the default release built by `mix release`
-    default_release: :default,
-    # This sets the default environment used by `mix release`
-    default_environment: Mix.env()
+  # This sets the default release built by `mix release`
+  default_release: :default,
+  # This sets the default environment used by `mix release`
+  default_environment: Mix.env()
 
 # For a full list of config options for both releases
 # and environments, visit https://hexdocs.pm/distillery/config/distillery.html
-
 
 # You may define one or more environments in this file,
 # an environment's settings will override those of a release
@@ -29,15 +28,21 @@ environment :dev do
   # It is recommended that you build with MIX_ENV=prod and pass
   # the --env flag to Distillery explicitly if you want to use
   # dev mode.
-  set dev_mode: true
-  set include_erts: false
-  set cookie: :"I5k@_{(,QW|mYbuK7,jJsM_vbdw<H?L$kcV?^/;{Hk3j,p>vPxPtL_w!k4TwHUx3"
+  set(dev_mode: true)
+  set(include_erts: false)
+
+  set(
+    cookie: :"I5k@_{(,QW|mYbuK7,jJsM_vbdw<H?L$kcV?^/;{Hk3j,p>vPxPtL_w!k4TwHUx3"
+  )
 end
 
 environment :prod do
-  set include_erts: true
-  set include_src: false
-  set cookie: :"d}V<:~k%uIt{9v:HW%V`wgjzZNa7BaZqNN7B!.]9RN370EN9IMCHtsZj(<@ZdgHQ"
+  set(include_erts: true)
+  set(include_src: false)
+
+  set(
+    cookie: :"d}V<:~k%uIt{9v:HW%V`wgjzZNa7BaZqNN7B!.]9RN370EN9IMCHtsZj(<@ZdgHQ"
+  )
 end
 
 # You may define one or more releases in this file.
@@ -46,14 +51,29 @@ end
 # will be used by default
 
 release :revista do
-  set version: "0.1.0"
-  set applications: [
-    :runtime_tools,
-    admin: :permanent,
-    auth: :permanent,
-    cms: :permanent,
-    twitter: :permanent,
-    web: :permanent
-  ]
-end
+  set(version: "0.1.0")
 
+  set(
+    applications: [
+      :runtime_tools,
+      admin: :permanent,
+      auth: :permanent,
+      cms: :permanent,
+      twitter: :permanent,
+      web: :permanent
+    ]
+  )
+
+  set(
+    config_providers: [
+      {Mix.Releases.Config.Providers.Elixir,
+       ["${RELEASE_ROOT_DIR}/etc/config.exs"]}
+    ]
+  )
+
+  set(
+    overlays: [
+      {:copy, "rel/config/config.exs", "etc/config.exs"}
+    ]
+  )
+end
