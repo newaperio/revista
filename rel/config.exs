@@ -65,6 +65,13 @@ release :revista do
   )
 
   set(
+    commands: [
+      migrate_auth: "rel/commands/migrate_auth.sh",
+      migrate_cms: "rel/commands/migrate_cms.sh"
+    ]
+  )
+
+  set(
     config_providers: [
       {Mix.Releases.Config.Providers.Elixir,
        ["${RELEASE_ROOT_DIR}/etc/config.exs"]}
