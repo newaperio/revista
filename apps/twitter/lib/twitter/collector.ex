@@ -51,7 +51,7 @@ defmodule Twitter.Collector do
         {:noreply, tweets}
 
       {:error, reason} ->
-        raise inspect(reason)
+        inspect(reason)
         {:noreply, state}
     end
   end
