@@ -6,7 +6,6 @@ defmodule Twitter.HTTPClient do
   alias Twitter.Tweet
 
   @behaviour Twitter.Client
-  @config Application.get_env(:twitter, Twitter.HTTPClient)
   @base_url "https://api.twitter.com/1.1"
 
   @doc """
@@ -29,11 +28,11 @@ defmodule Twitter.HTTPClient do
   def get_recent_tweets(count \\ 5) do
     url =
       url("/statuses/user_timeline.json",
-        screen_name: @config[:screen_name],
+        screen_name: config()[:screen_name],
         count: count
       )
 
-    headers = [{"Authorization", "Bearer #{@config[:bearer_token]}"}]
+    headers = [{"Authorization", "Bearer #{config()[:bearer_token]}"}]
 
     case HTTPoison.get(url, headers) do
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
@@ -58,7 +57,7 @@ defmodule Twitter.HTTPClient do
   end
 
   @doc false
-  def config, do: inspect(@config)
+  def config, do: Application.get_env(:twitter, Twitter.HTTPClient)
 
   defp url(endpoint, params) do
     params =
