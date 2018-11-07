@@ -9,8 +9,7 @@ defmodule Twitter.Router do
     )
   end
 
-  scope "/" do
-    forward("/healthcheck", Twitter.PlugRouter)
+  scope "/twitter" do
     forward("/graphiql", Absinthe.Plug.GraphiQL, schema: Twitter.Schema)
     forward("/", Absinthe.Plug, schema: Twitter.Schema)
   end

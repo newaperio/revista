@@ -13,7 +13,5 @@ defmodule Web.Router do
     pipe_through(:browser)
 
     get("/", PageController, :index)
-
-    forward("/", PlugRouter)
   end
 end

@@ -59,6 +59,7 @@ release :revista do
       admin: :permanent,
       auth: :permanent,
       cms: :permanent,
+      proxy: :permanent,
       twitter: :permanent,
       web: :permanent
     ]

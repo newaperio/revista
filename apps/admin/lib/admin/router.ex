@@ -10,7 +10,7 @@ defmodule Admin.Router do
     plug(Admin.AuthWeb)
   end
 
-  scope "/", Admin do
+  scope "/admin", Admin do
     pipe_through(:browser)
 
     get("/", PageController, :index)
@@ -18,7 +18,5 @@ defmodule Admin.Router do
     resources("/posts", PostController)
     resources("/users", UserController, only: [:new, :create])
     resources("/sessions", SessionController, only: [:new, :create, :delete])
-
-    forward("/", PlugRouter)
   end
 end

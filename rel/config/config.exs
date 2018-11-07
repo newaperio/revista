@@ -6,7 +6,7 @@ defmodule Revista.ConfigHelpers do
   def integer_var(varname, default \\ 1) do
     case System.get_env(varname) do
       nil -> default
-      val -> val
+      val -> String.to_integer(val)
     end
   end
 end
@@ -28,6 +28,10 @@ auth = %{
 cms = %{
   pool_size: ConfigHelpers.integer_var("CMS_POOL_SIZE", 10),
   database_url: System.get_env("CMS_DATABASE_URL")
+}
+
+proxy = %{
+  port: ConfigHelpers.integer_var("PROXY_PORT", 4000)
 }
 
 twitter = %{
@@ -57,7 +61,10 @@ config :cms, CMS.Repo,
   url: cms[:database_url],
   pool_size: cms[:pool_size]
 
-config :admin, Twitter.Endpoint,
+config :proxy,
+  port: proxy[:port]
+
+config :twitter, Twitter.Endpoint,
   http: [:inet6, port: twitter[:port]],
   url: [host: "localhost", port: twitter[:port]],
   secret_key_base: twitter[:secret_key_base]

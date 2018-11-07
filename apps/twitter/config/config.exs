@@ -20,8 +20,8 @@ config :twitter,
   client: Twitter.HTTPClient
 
 config :twitter, Twitter.HTTPClient,
-  bearer_token: System.get_env("BEARER_TOKEN"),
-  screen_name: System.get_env("SCREEN_NAME")
+  bearer_token: System.get_env("TWITTER_BEARER_TOKEN"),
+  screen_name: System.get_env("TWITTER_SCREEN_NAME")
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
