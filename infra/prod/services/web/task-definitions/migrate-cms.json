@@ -1,0 +1,96 @@
+[
+  {
+    "dnsSearchDomains": null,
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "rv-prod-web",
+        "awslogs-region": "us-east-1",
+        "awslogs-stream-prefix": "rv-prod-web"
+      }
+    },
+    "entryPoint": null,
+    "portMappings": [
+      {
+        "hostPort": 0,
+        "protocol": "tcp",
+        "containerPort": 4000
+      },
+      {
+        "hostPort": 0,
+        "protocol": "tcp",
+        "containerPort": 4001
+      },
+      {
+        "hostPort": 0,
+        "protocol": "tcp",
+        "containerPort": 4002
+      }
+    ],
+    "command": ["/opt/app/bin/revista", "migrate_cms"],
+    "linuxParameters": null,
+    "cpu": 0,
+    "environment": [
+      {
+        "name": "ADMIN_PORT",
+        "value": "4002"
+      },
+      {
+        "name": "ADMIN_SECRET_KEY_BASE",
+        "value": "OIy6AzkPwFRmOBi6hxirOrjV7BAL85OxWRR77CeVMN8dL86OICAMAisSvBup7Ypq"
+      },
+      {
+        "name": "AUTH_DATABASE_URL",
+        "value": "postgresql://revista:came-forsooth-erupt-sedate@auth.cfpxi0jx5gzb.us-east-1.rds.amazonaws.com/auth_prod"
+      },
+      {
+        "name": "CMS_DATABASE_URL",
+        "value": "postgresql://revista:otiose-killdeer-prolate-fluster@cms.cfpxi0jx5gzb.us-east-1.rds.amazonaws.com/cms_prod"
+      },
+      {
+        "name": "TWITTER_BEARER_TOKEN",
+        "value": "AAAAAAAAAAAAAAAAAAAAAJXqyQAAAAAA97fLNsDy9FUIfkaqw%2FFCkH7rqrE%3DSeP7bNIbKGtOV3Ir6bNWs0iWt7y5dqyhBAPWuomkzSSOO12EEy"
+      },
+      {
+        "name": "TWITTER_PORT",
+        "value": "4001"
+      },
+      {
+        "name": "TWITTER_SCREEN_NAME",
+        "value": "newaperio"
+      },
+      {
+        "name": "TWITTER_SECRET_KEY_BASE",
+        "value": "QFJI0kXV914wLu3dLJ4bME7Bxhte3hNvnmzX1gBxA7oa9W/jwfvsAsRj9mPbkhBC"
+      },
+      {
+        "name": "WEB_PORT",
+        "value": "4002"
+      },
+      {
+        "name": "WEB_SECRET_KEY_BASE",
+        "value": "KLj09+ugJ7CP8yqTfguO9QOQ1BUsKUL70CqqCpZv4o+zoy45ey4fZ5sQ1+TQfTHl"
+      }
+    ],
+    "ulimits": null,
+    "dnsServers": null,
+    "mountPoints": [],
+    "workingDirectory": null,
+    "dockerSecurityOptions": null,
+    "memory": null,
+    "memoryReservation": 500,
+    "volumesFrom": [],
+    "image": "584964217758.dkr.ecr.us-east-1.amazonaws.com/newaperio/revista:latest",
+    "disableNetworking": null,
+    "healthCheck": null,
+    "essential": true,
+    "links": null,
+    "hostname": null,
+    "extraHosts": null,
+    "user": null,
+    "readonlyRootFilesystem": null,
+    "dockerLabels": null,
+    "privileged": null,
+    "name": "web"
+  }
+]
