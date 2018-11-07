@@ -6,7 +6,7 @@ defmodule Revista.ConfigHelpers do
   def integer_var(varname, default \\ 1) do
     case System.get_env(varname) do
       nil -> default
-      val -> val
+      val -> String.to_integer(val)
     end
   end
 end
@@ -57,7 +57,7 @@ config :cms, CMS.Repo,
   url: cms[:database_url],
   pool_size: cms[:pool_size]
 
-config :admin, Twitter.Endpoint,
+config :twitter, Twitter.Endpoint,
   http: [:inet6, port: twitter[:port]],
   url: [host: "localhost", port: twitter[:port]],
   secret_key_base: twitter[:secret_key_base]
@@ -66,7 +66,7 @@ config :twitter, Twitter.HTTPClient,
   bearer_token: twitter[:bearer_token],
   screen_name: twitter[:screen_name]
 
-config :admin, Web.Endpoint,
+config :web, Web.Endpoint,
   http: [:inet6, port: web[:port]],
   url: [host: "localhost", port: web[:port]],
   secret_key_base: web[:secret_key_base]
