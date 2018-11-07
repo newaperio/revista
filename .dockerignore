@@ -1,0 +1,12 @@
+_build
+.formatter.exs
+.git/
+.gitignore
+.tool-versions
+deps
+Dockerfile
+README.md
+
+**/assets/node_modules
+**/priv/static
+**/test
