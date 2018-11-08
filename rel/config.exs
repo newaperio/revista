@@ -51,7 +51,7 @@ end
 # will be used by default
 
 release :revista do
-  set(version: "0.1.0")
+  set(version: "0.1.1")
 
   set(
     applications: [
