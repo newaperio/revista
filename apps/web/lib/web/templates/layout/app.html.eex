@@ -4,22 +4,24 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Revista de New Aperio</title>
+    <title>Revista de NewAperio</title>
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
   </head>
   <body>
-    <header class="mb-5">
-      <section class="container">
-        <h1 class="banner pb-2">
-          <span class="banner__main display-3 mb-0">Revista</span>
-          <span class="banner__sub text-uppercase h5 text-muted">de New Aperio</span>
-        </h1>
-      </section>
+    <header class="banner mb-5">
+      <div class="container d-flex justify-content-between">
+        <h1 class="display-5 m-0">Revista</h1>
+        <div class="banner__logo">By NewAperio</div>
+      </div>
     </header>
 
-    <div class="container">
-      <%= render @view_module, @view_template, assigns %>
-    </div>
+    <%= render @view_module, @view_template, assigns %>
+
+    <footer class="footer py-4">
+      <div class="container">
+        <a href="https://github.com/newaperio/revista">https://github.com/newaperio/revista</a>
+      </div>
+    </footer>
 
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </body>

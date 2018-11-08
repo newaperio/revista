@@ -1,23 +1,29 @@
-<div class="row mb-5">
-  <main role="main" class="col-8">
-    <% post = List.first(@posts) %>
-    <article>
-      <h1 class="h1 font-weight-bold"><%= post.title %></h1>
-      <div class="text-lg"><%= Phoenix.HTML.raw(post.body) %></div>
-    </article>
-  </main>
+<div class="container">
+  <div class="row">
+    <main role="main" class="col-8">
+      <% post = List.first(@posts) %>
+      <article>
+        <h1 class="h1 font-weight-bold mb-3"><%= post.title %></h1>
+        <div class="text-lg"><%= Phoenix.HTML.raw(post.body) %></div>
+      </article>
+    </main>
 
-  <aside class="col-4">
-    <div id="tweets"></div>
-  </aside>
+    <aside class="col-4">
+      <div id="tweets"></div>
+    </aside>
+  </div>
 </div>
 
-<div class="row mb-5">
-  <%= for post <- Enum.slice(@posts, 1, 6) do %>
-    <article class="col-4 mb-5 excerpt">
-      <h1 class="h2 font-weight-bold"><%= post.title %></h1>
-      <div><%= Phoenix.HTML.raw(post.body) %></div>
-      <div class="excerpt__fade"></div>
-    </article>
-  <% end %>
+<div class="excerpts">
+  <div class="container">
+    <div class="row">
+      <%= for post <- Enum.slice(@posts, 1, 6) do %>
+        <article class="col-4 mb-5 excerpt">
+          <h1 class="h2 font-weight-bold"><%= post.title %></h1>
+          <div><%= Phoenix.HTML.raw(post.body) %></div>
+          <div class="excerpt__fade"></div>
+        </article>
+      <% end %>
+    </div>
+  </div>
 </div>
