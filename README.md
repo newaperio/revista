@@ -7,7 +7,7 @@ given by NewAperio:
 1. Internal lunch and learn on umbrella apps
 2. [Big Elixir] talk on deploying Elixir to AWS
 
-[big elixir]: https://newaperio.com/blog/the-big-elixir
+[big elixir]: https://newaperio.com/blog/elixir-in-the-cloud-at-the-big-elixir-2018
 
 ## Umbrella App
 
